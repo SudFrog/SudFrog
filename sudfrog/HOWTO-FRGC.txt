@@ -1,0 +1,72 @@
+﻿ï»¿*** README OF USING?SUD-FROG?TO RUN FRGCv2 expriment 4***
+(Last update - 26/09/2010 by Dianle ZHOU)
+
+This file explains how to use the sud FROG system on jaguar. Note that, one should run the experiment on the node instead of frontal.
+
+
+
+##############################################################
+Database and protocol:
+One can get more information about this database from http://www.frvt.org/FRGC/
+Note: commands to type are initial with “>” 
+replace /home/xxxx/ with your own folder
+##############################################################
+
+
+1-- Preparing:
+        a) Go to one node.
+
+                > ssh compute-0-7
+
+        b) Set environment variable:
+
+                > export PATH=/home/xxxx/bin/bin:$PATH
+
+        c) (Optional) Normalize images:
+
+                > Normfaces /data/preprocessing/frgc/PFC_param_last.xml /data/preprocessing/frgc/frgc-params/Learning.xml /data/databases/ ./DataNorm/
+                > Normfaces /data/preprocessing/frgc/PFC_param_last.xml  /data/preprocessing/frgc/frgc-params/FRGC_Exp_2.0.4_Target_meta.xml /data/databases/ ./DataNorm/
+                > Normfaces /data/preprocessing/frgc/PFC_param_last.xml /data/preprocessing/frgc/frgc-params/FRGC_Exp_2.0.4_Query_meta.xml /data/databases/ ./DataNorm/
+
+            This is an optional step, as we have already put the normalized images in follow place:
+              > /data/preprocessing/frgc/DataNorm_50/
+2-- Learning:
+
+            > SpaceLearner /data/preprocessing/frgc/PFC_param_last.xml /home/xxxx/work-dij/frog/examples/Learning.xml /data/preprocessing/frgc/DataNorm_50/
+            > cp Spacefile /home/xxxx/work-dij/frog/examples/
+
+2-- Computation:
+
+            > frgc_run /data/preprocessing/frgc/PFC_param_last.xml  /home/xxxx/work-dij/frog/examples/params/FRGC_Exp_2.0.4_Query_meta.xml /home/xxxx/work-dij/frog/examples/params/FRGC_Exp_2.0.4_Target_meta.xml data/preprocessing/frgc/DataNorm_50/ /home/xxxx/work-dij/frog/examples/params/maskI_Exp4.mtx SimI_Exp4.mtx  >log-frog-alpha-1
+
+
+3-- Evaluation:
+
+            > GetPerformance -h 0.001 -M /home/xxxx/work-dij/frog/examples/params/maskI_Exp4.mtx -S SimI_Exp4.mtx
+
+
+##############################################################
+The result will be:
+
+Mask Matrix Loaded
+Matrix Loaded
+98336 : Client tests
+27608616 : Impostor tests
+Similarity Loading intra/inter results...
+problem detected: Distance
+number match/mismatch 98336/27608616
+minimum/maximum intraclass tests -0.760/0.129
+minimum/maximum interclass tests -0.644/0.404
+EER[Far/Frr]: 4.907[4.926/4.887] confidences on [Far: 0.008, Frr: 0.135]
+VR: 62.811 @0.1% Far, confidences on VR: 0.302
+##############################################################
+
+##############################################################
+Here is a short Summary on the FRGCv2
+##############################################################
+1ï¼ Controlled veuse uncontrolled images
+2ï¼ Geometry normalized with eyes and mouth centers
+3ï¼ Photometric normalization is anaphoric smooth
+4ï¼ Face coding representation with gabor fitter (5*8) and DLDA face space (see detail about learning in /data/preprocessing/frgc/PFC_param_last.xml ).
+5ï¼ Distance measure is cosine distance
+6. For each person 10 controlled images and 10  uncontrolled images are used for learning
