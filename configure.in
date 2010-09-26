@@ -1,0 +1,14 @@
+AC_INIT(configure.in)
+
+AM_CONFIG_HEADER(config.h)
+AM_INIT_AUTOMAKE(frog, 0.1)
+
+AC_LANG_CPLUSPLUS
+AC_PROG_CXX
+AM_PROG_LIBTOOL
+
+AC_OUTPUT(Makefile bins/CompareFaces/Makefile bins/CompareList/Makefile \
+	bins/CompareTemplates/Makefile bins/GetPerformance/Makefile bins/Makefile bins/Normfaces/Makefile \
+	bins/SpaceLearner/Makefile bins/TemplateFace/Makefile bins/TemplateList/Makefile \
+	bins/frgc_run/Makefile bins/mbgc_run/Makefile lib/Makefile lib/TMSPFace/Makefile \
+	lib/newmat/Makefile lib/xmlparser/Makefile)

@@ -1,0 +1,5 @@
+<map id="G" name="G">
+<area shape="rect" href="$struct_t_m_s_p___face___space_1_1_face___coordinates.html" title="Structure for storing the coordinates of Eyes, Nose and Mouth location in the original..." alt="" coords="5,7,280,33"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1_mask.html" title="Class that creates an elliptic mask to be applied to faces." alt="" coords="304,7,493,33"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1_pfc___image.html" title="Class that allows the manipulation of image for the baseline." alt="" coords="517,7,744,33"/>
+</map>

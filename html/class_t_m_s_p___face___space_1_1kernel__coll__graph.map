@@ -1,0 +1,6 @@
+<map id="G" name="G">
+<area shape="rect" href="$struct_t_m_s_p___face___space_1_1kersigmoid.html" title="structure that stores a Sigmoid kernel parameters Y=tanh ( X*gamma + decal );" alt="" coords="5,5,232,32"/>
+<area shape="rect" href="$struct_t_m_s_p___face___space_1_1kerlin.html" title="structure that stores a Linear kernel parameters Y = X*alpha + decal;" alt="" coords="24,56,213,83"/>
+<area shape="rect" href="$struct_t_m_s_p___face___space_1_1kerrbf.html" title="structure that stores a Radial Basis Function kernel parameters Y= exp ( &#45;X*power..." alt="" coords="21,107,216,133"/>
+<area shape="rect" href="$struct_t_m_s_p___face___space_1_1kerpoly.html" title="structure that stores a Polynomial kernel parameters Y = pow ( ( X + decal ),power..." alt="" coords="17,157,220,184"/>
+</map>

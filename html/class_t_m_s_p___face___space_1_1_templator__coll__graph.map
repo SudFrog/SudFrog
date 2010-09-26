@@ -1,0 +1,10 @@
+<map id="G" name="G">
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1_gaborate.html" title="Class that computes the gabor filtering of an input image." alt="" coords="655,129,873,156"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1_mask.html" title="Class that creates an elliptic mask to be applied to faces." alt="" coords="272,56,461,83"/>
+<area shape="rect" href="$struct_gabor_params.html" title="Structure that stores the gabor filters parameters and the returned complexe part..." alt="" coords="312,107,421,133"/>
+<area shape="rect" title="STL class." alt="" coords="7,327,97,353"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1_non_linear_reducer.html" title="Class used to reduce the input space by nonlinear methods using kernel approaches..." alt="" coords="625,460,903,487"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1_linear_reducer.html" title="Class used to reduce the input space by linear methods (PCA,LDA,DLDA)." alt="" coords="639,316,889,343"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1verbose.html" title="Class that controls the verbozing of different classes." alt="" coords="263,259,471,285"/>
+<area shape="rect" href="$class_t_m_s_p___face___space_1_1kernel.html" title="Class that create kernels and implement kernel methods." alt="" coords="269,565,464,592"/>
+</map>

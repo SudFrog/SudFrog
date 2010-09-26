@@ -1,0 +1,140 @@
+
+<?xml version="1.0" encoding="UTF-8"?>
+
+<PFC_params dir="." threads="2" verb="1">
+  
+  <norm eyedist="50" illum="AS" params="150:1"/>
+
+  <gabor method="NONE" reductcoef="4" scales="5" orientations="8" minWaveLength="8" mult="2" sigmaOnf="0.65" ThetaOnSigma="1.4"/> 
+
+  <reduction_space Method="LDA" Method-param="" file="Spacefile" nusers="220" control="5" noncontrol="5"/>
+
+  <Similarity measure="COS" />
+  
+</PFC_params>
+
+
+<!--
+This file contains all the parameters that the programs need
+the following are the details of the xml structure
+
+-node PFC_params (description)
+
+	-*-attribute1 : "dir"
+		=> the directory used for the workspace 
+
+	-*-attribute2 : "threads" 
+		=> the number of threads to use (use max 1 for monocore machines) 
+
+	-*-attribute3 : "verb"
+		=> the level of the program verbosing (from 0 to 3)
+
+*****************************************************************************************************************************************
+	-node1: "norm"
+	image normalisation section (geometric and illumination)
+
+		-*-attribute1 : "eyedist"
+			=> the distance between eyes' center, it used to normalize the face and to compute the gabor filters dimensions.
+
+		-*-attribute2 : "illum"
+			=> the illumintaion methods 
+				-AS: anisotropic smoothing
+				-HISTOGRAMM: Histogramm equalization
+				-GAMMA: Gamma correction
+				-LOG: log transformation
+
+		-*-attribute3 : "params"
+			=> illumination parameters
+				-AS takes 2 parameters (steps:reg)
+				-HISTOGRAMM takes no parameters
+				-GAMMA takes 1 parameter 0<gamma<1
+				-LOG takes no parameters
+
+*****************************************************************************************************************************************
+	-node2: gabor
+	to have a good idea on what's gabor wavelet: http://www.csse.uwa.edu.au/~pk/research/matlabfns/PhaseCongruency/Docs/convexpl.html
+
+		-*-attribute1 : "method"
+			=> the used part of gabor complex features
+				- "NONE": only the pixel intensity is used. no gabor features computed
+				- "REAL": real part of complex features
+				- "IMAG": imaginary part
+				- "MAGN": magnitude part
+				- "PHASE": angle part
+				- "ALL" : use REAL, IMAG, MAGN and PHASE
+					=>You can use a combination of features example(method="MAGN,REAL,IMAG")
+
+		-*-attribute2 : "reductcoef"
+			=> the coefficient sampling of the gabor features (note that for a reductcoef="2" just 1 gabor component on 2 is kept)
+			a normalisation of the gabor features is done before the sampling to get mean=0 and std=1 for the real and imaginary parts. 
+
+		-*-attribute5 : "scales"
+			=>the number of scales of the gabor filters
+
+		-*-attribute6 : "orientations"
+			=>the number of orientation of the gabor filters
+
+		-*-attribute7 : "minWaveLength"
+			=>the lentgh of the first scale gabor wavelet	
+
+		-*-attribute8 : "mult"
+			=>tTo go from a scale wavelet to the next one the lentgh is multiplied by mult. 
+
+		-*-attribute9 : "sigmaOnf"
+			=>Ratio of the standard deviation of the Gaussian describing the log Gabor filter's  transfer function in the frequency domain to the filter center frequency. 
+
+		-*-attribute10 : "ThetaOnSigma"
+			=>Ratio of angular interval between filter orientations and the standard deviation of the angular Gaussian function used to construct filters in the freq. plane
+	
+*****************************************************************************************************************************************
+	-node3: reduction_space
+
+		-*-attribute1 : "Method"
+			=>the reduction space method used
+			- "PCA": Principal Component Analysis: http://face-rec.org/algorithms/#PCA
+			- "LDA" : Linear Discrimninat Analysis: http://face-rec.org/algorithms/#LDA
+			- "DLDA" : Direct Linear Discrimninat Analysis: http://dx.doi.org/10.1016/S0031-3203(00)00162-X
+			- "KFA" : Kernel Fisher Analysis: http://dx.doi.org/10.1109/TPAMI.2006.90
+			- "GDA" : General Discriminant Analysis: G. Baudat and F. Anouar, “Generalized Discriminant Analysis Using a Kernel Approach,” Neural Computation, vol. 12, no. 10, pp. 2385-2404, 2000.
+
+		-*-attribute2 : "Method-param"
+			=> parameters for the chosen method for:
+				-PCA : Method-param="variance=X" 
+					with 0 < X < 100 
+				-KFA or GDA : Method-param="type=X;params=Y,Z" 
+					with X=	0 (linear kernel) => c = Y*a + Z;
+					      	1 (Polynomial kernel) => pow ( ( a + Z ), Y );
+						2 (RBF kernel) =>  exp ( -Y*a ) ;
+						3 (sigmoid kernel) => tanh ( Y*a + Z );
+				
+		-*-attribute3 : "file"
+			=> the path of the space reduced file (saved or loaded)
+				used by the different module to avoid arguments input error
+
+		-*-attribute4 : "nusers"
+			=> number of user used to learn the space	
+
+		-*-attribute5 : "control"
+			=> number of controlled images/user
+
+		-*-attribute6 : "noncontrol"
+			=>number of uncontrolled images/user
+
+*****************************************************************************************************************************************
+	-node4: Similarity
+
+		-*-attribute5 : "measure"
+			=> the measure used to compare templates 
+				- "L1": sum_absolute_value(T1-T2);
+				- "L2": norm_Frobenius(T1-T2);
+				- "COS" : -dotproduct ( T1,T2) / ( sqrt ( sum_square ( T1 ) *sum_square ( T2 ) ) );
+				- "NORMDIST": Norm_Frobenius (T1/Norm_Frobenius(T1) - T2/Norm_Frobenius(T2));
+					=>Note that NORMDIST is equivalent to COS
+
+*****************************************************************************************************************************************
+
+-->
+
+
+
+
